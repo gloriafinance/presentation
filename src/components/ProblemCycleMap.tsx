@@ -7,8 +7,8 @@ interface ProblemCycleMapProps {
   activeNodeId?: string;
 }
 
-// Grouped 8 Nodes representing the simplified scenario for supreme legibility
-interface OctagonNode {
+// Symmetrical 10 Nodes representing all detail slides for comprehensive mindmap narrative
+interface DecagonNode {
   id: string;
   number: number;
   title: string;
@@ -19,8 +19,8 @@ interface OctagonNode {
   y: number; // exact mathematical percentage top
 }
 
-// Mathematically perfect octagon coordinates with a wide 40% radius
-const octagonNodes: OctagonNode[] = [
+// Mathematically perfect decagon coordinates with a wide 40% radius
+const decagonNodes: DecagonNode[] = [
   {
     id: "administracao",
     number: 1,
@@ -29,7 +29,7 @@ const octagonNodes: OctagonNode[] = [
     slideIndex: 2, // Slide 3
     accentColor: "green",
     x: 50,
-    y: 10
+    y: 5
   },
   {
     id: "rotina-complexa",
@@ -38,8 +38,8 @@ const octagonNodes: OctagonNode[] = [
     subtitle: "Fluxo complexo",
     slideIndex: 3, // Slide 4
     accentColor: "purple",
-    x: 78.3,
-    y: 21.7
+    x: 76.5,
+    y: 13.6
   },
   {
     id: "dados-espalhados",
@@ -48,18 +48,18 @@ const octagonNodes: OctagonNode[] = [
     subtitle: "Dados espalhados",
     slideIndex: 4, // Slide 5
     accentColor: "orange",
-    x: 90,
-    y: 50
+    x: 92.8,
+    y: 36.1
   },
   {
-    id: "rastreabilidade",
+    id: "fragilidade-administrativa",
     number: 4,
     title: "Rastreabilidade",
     subtitle: "Sem histórico",
     slideIndex: 5, // Slide 6
     accentColor: "purple",
-    x: 78.3,
-    y: 78.3
+    x: 92.8,
+    y: 63.9
   },
   {
     id: "confianca",
@@ -68,38 +68,58 @@ const octagonNodes: OctagonNode[] = [
     subtitle: "Prestação de contas",
     slideIndex: 6, // Slide 7
     accentColor: "green",
-    x: 50,
-    y: 90
+    x: 76.5,
+    y: 86.4
   },
   {
-    id: "responsabilidade",
+    id: "legal-documental",
     number: 6,
     title: "Responsabilidade",
-    subtitle: "Legal e espiritual",
+    subtitle: "Legal e documental",
     slideIndex: 7, // Slide 8
     accentColor: "orange",
-    x: 21.7,
-    y: 78.3
+    x: 50,
+    y: 95
+  },
+  {
+    id: "mordomia",
+    number: 7,
+    title: "Mordomia",
+    subtitle: "Zelo e ordem",
+    slideIndex: 8, // Slide 9
+    accentColor: "purple",
+    x: 23.5,
+    y: 86.4
   },
   {
     id: "continuidade",
-    number: 7,
+    number: 8,
     title: "Continuidade",
     subtitle: "Memória institucional",
     slideIndex: 9, // Slide 10
     accentColor: "green",
-    x: 10,
-    y: 50
+    x: 7.2,
+    y: 63.9
+  },
+  {
+    id: "patrimonio",
+    number: 9,
+    title: "Patrimônio",
+    subtitle: "Bens sem controle",
+    slideIndex: 10, // Slide 11
+    accentColor: "orange",
+    x: 7.2,
+    y: 36.1
   },
   {
     id: "decisao",
-    number: 8,
+    number: 10,
     title: "Decisão",
     subtitle: "Sem visão de dados",
     slideIndex: 11, // Slide 12
     accentColor: "purple",
-    x: 21.7,
-    y: 21.7
+    x: 23.5,
+    y: 13.6
   }
 ];
 
@@ -161,12 +181,12 @@ export const ProblemCycleMap: React.FC<ProblemCycleMapProps> = ({
         {/* DESKTOP CIRCULAR MINDMAP */}
         <div className="map-circular-canvas">
           
-          {/* Animated Dashed Connecting Ring (aligned to 40% radius) */}
+          {/* Animated Dashed Connecting Ring (aligned to 45% radius) */}
           <svg className="map-connecting-ring">
             <motion.circle
               cx="50%"
               cy="50%"
-              r="40%"
+              r="45%"
               fill="none"
               stroke="#D2CADC"
               strokeWidth="2"
@@ -205,14 +225,14 @@ export const ProblemCycleMap: React.FC<ProblemCycleMapProps> = ({
             </div>
           </motion.div>
 
-          {/* Render 8 Grouped Nodes Symmetrically via Manual Octagon Grid */}
+          {/* Render 10 Grouped Nodes Symmetrically via Manual Decagon Grid */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="map-nodes-layer"
           >
-            {octagonNodes.map((node) => {
+            {decagonNodes.map((node) => {
               const accent = getAccentColor(node.accentColor);
               const softBg = getSoftAccentBg(node.accentColor);
               const isActive = activeNodeId === node.id;
@@ -278,7 +298,7 @@ export const ProblemCycleMap: React.FC<ProblemCycleMapProps> = ({
 
           {/* List of nodes */}
           <div className="mobile-nodes-grid">
-            {octagonNodes.map((node) => {
+            {decagonNodes.map((node) => {
               const accent = getAccentColor(node.accentColor);
               const softBg = getSoftAccentBg(node.accentColor);
 

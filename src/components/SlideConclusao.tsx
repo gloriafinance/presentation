@@ -6,31 +6,31 @@ export const SlideConclusao: React.FC = () => {
   const dimensions = [
     {
       title: "Administrativo",
-      desc: "Retrabalho constante, perda silenciosa de comprovantes e ausência de fluxos padronizados.",
+      desc: "Retrabalho, perda de informações e falta de padronização.",
       icon: <Clipboard size={20} className="icon-purple" />,
       color: "var(--gloria-purple)"
     },
     {
       title: "Financeiro",
-      desc: "Dificuldade em prever saldos futuros, acompanhar saídas e unificar contas departamentais.",
+      desc: "Dificuldade de acompanhar entradas, saídas, compromissos e saldos.",
       icon: <TrendingUp size={20} className="icon-green" />,
       color: "var(--gloria-green)"
     },
     {
-      title: "Jurídico-Documental",
-      desc: "Fragilidade para comprovar decisões contábeis antigas ou apoiar trocas de gestão.",
+      title: "Jurídico-documental",
+      desc: "Fragilidade para comprovar decisões, pagamentos e históricos.",
       icon: <Shield size={20} className="icon-orange" />,
       color: "var(--gloria-orange)"
     },
     {
-      title: "Espiritual (Zelo)",
-      desc: "Risco de desgastar a confiança sobre contribuições ofertadas com sacrifício e propósito.",
+      title: "Espiritual",
+      desc: "Risco de enfraquecer a confiança sobre recursos entregues com propósito.",
       icon: <Heart size={20} className="icon-red" />,
       color: "var(--gloria-purple)"
     },
     {
       title: "Estratégico",
-      desc: "Liderança forçada a decidir com base em sentimentos imediatos, sem relatórios confiáveis.",
+      desc: "Liderança tomando decisões sem visão clara da realidade.",
       icon: <Compass size={20} className="icon-blue" />,
       color: "var(--gloria-green)"
     }
@@ -65,7 +65,7 @@ export const SlideConclusao: React.FC = () => {
           O problema não é apenas financeiro.
         </h2>
         <p className="conclusao-subtitle">
-          É um ciclo administrativo, jurídico, pastoral e estratégico que afeta a clareza da igreja.
+          É organizacional, legal, espiritual e estratégico.
         </p>
       </div>
 
@@ -116,7 +116,7 @@ export const SlideConclusao: React.FC = () => {
         className="conclusao-cta-panel"
       >
         <p className="cta-statement">
-          "É aqui que a igreja precisa deixar de apenas registrar movimentações isoladas e passar a ter uma gestão financeira organizada, rastreável e madura."
+          "É aqui que a igreja precisa deixar de apenas registrar movimentações e passar a ter uma gestão financeira organizada, rastreável e confiável."
         </p>
 
         {/* Consultative Call-to-action */}
