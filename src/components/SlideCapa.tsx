@@ -85,7 +85,13 @@ export const SlideCapa: React.FC<SlideCapaProps> = ({ onStart }) => {
           </motion.div>
 
           {/* SVG Scene */}
-          <svg viewBox="0 0 480 520" className="capa-pain-svg" preserveAspectRatio="xMidYMid meet">
+          <svg
+            viewBox="0 0 480 520"
+            className="capa-pain-svg"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="Cena de gestão fragmentada com planilha, conversas, comprovantes e documentos tentando alimentar um painel financeiro incompleto."
+          >
             
             {/* ═══ CENTRO: Dashboard Incompleto ═══ */}
             <motion.g
@@ -128,8 +134,8 @@ export const SlideCapa: React.FC<SlideCapaProps> = ({ onStart }) => {
               style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.08))" }}
             >
               <rect width="130" height="95" rx="10" fill="#FFFFFF" stroke="var(--gloria-border)" strokeWidth="1.5" />
-              <rect width="130" height="22" rx="10" fill="#21A366" />
-              <rect x="0" y="14" width="130" height="8" fill="#21A366" />
+              <rect width="130" height="22" rx="10" fill="var(--gloria-green)" opacity="0.82" />
+              <rect x="0" y="14" width="130" height="8" fill="var(--gloria-green)" opacity="0.82" />
               {/* Grid lines */}
               <line x1="8" y1="36" x2="122" y2="36" stroke="var(--gloria-border)" strokeWidth="1" />
               <line x1="8" y1="50" x2="122" y2="50" stroke="var(--gloria-border)" strokeWidth="1" />
@@ -152,15 +158,15 @@ export const SlideCapa: React.FC<SlideCapaProps> = ({ onStart }) => {
               style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.1))" }}
             >
               <rect width="120" height="155" rx="14" fill="#FFFFFF" stroke="var(--gloria-border)" strokeWidth="1.5" />
-              <rect width="120" height="34" rx="14" fill="#128C7E" />
-              <rect x="0" y="20" width="120" height="14" fill="#128C7E" />
+              <rect width="120" height="34" rx="14" fill="var(--gloria-green)" opacity="0.82" />
+              <rect x="0" y="20" width="120" height="14" fill="var(--gloria-green)" opacity="0.82" />
               {/* Title */}
               <rect x="12" y="10" width="50" height="7" rx="3.5" fill="#FFFFFF" opacity="0.8" />
               {/* Chat bubbles */}
               <rect x="10" y="46" width="70" height="20" rx="10" fill="#E2E8F0" />
-              <rect x="40" y="74" width="70" height="20" rx="10" fill="#DCF8C6" />
+              <rect x="40" y="74" width="70" height="20" rx="10" fill="var(--gloria-soft-green)" />
               <rect x="10" y="102" width="55" height="20" rx="10" fill="#E2E8F0" />
-              <rect x="50" y="128" width="60" height="16" rx="8" fill="#DCF8C6" opacity="0.7" />
+              <rect x="50" y="128" width="60" height="16" rx="8" fill="var(--gloria-soft-green)" />
             </motion.g>
 
             {/* ═══ COMPROVANTE (Bottom-Right) ═══ */}

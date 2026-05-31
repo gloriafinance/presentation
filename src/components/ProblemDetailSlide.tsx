@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { ProblemSlide } from "../data/problemSlides";
 import { HelpCircle } from "lucide-react";
+import { ProblemVisual } from "./visuals/ProblemVisual";
 
 interface ProblemDetailSlideProps {
   slide: ProblemSlide;
@@ -27,80 +28,6 @@ export const ProblemDetailSlide: React.FC<ProblemDetailSlideProps> = ({ slide })
       opacity: 1,
       transition: { staggerChildren: 0.12 }
     }
-  };
-
-  // Dynamic high-fidelity 3D illustrations mapping
-  const imageMapping: Record<string, string> = {
-    administration: "/images/administracao.png",
-    complexity: "/images/rotina-complexa.png",
-    "scattered-data": "/images/dados-espalhados.png",
-    fragility: "/images/fragilidade-administrativa.png",
-    trust: "/images/confianca.png",
-    legal: "/images/legal-documental.png",
-    stewardship: "/images/mordomia.png",
-    continuity: "/images/continuidade.png",
-    patrimony: "/images/patrimonio.png",
-    decision: "/images/rotina-complexa.png" // beautiful purple fallback representing networks and charts
-  };
-
-  const renderIllustration = () => {
-    const imageSrc = imageMapping[slide.visualType];
-    if (imageSrc) {
-      return (
-        <img 
-          src={imageSrc} 
-          alt={`Ilustração representando: ${slide.shortTitle}`} 
-          className="detail-visual-svg"
-          style={{ borderRadius: "12px", width: "100%", height: "auto", display: "block" }}
-        />
-      );
-    }
-
-    // Default premium fallback shield if no image is defined
-    const iconColor = accent;
-    const iconBg = softBg;
-    
-    return (
-      <svg viewBox="0 0 500 420" className="detail-visual-svg">
-        <circle cx="250" cy="210" r="160" fill={iconBg} />
-        <motion.circle 
-          cx="250" 
-          cy="210" 
-          r="130" 
-          fill="none" 
-          stroke={iconColor} 
-          strokeWidth="2" 
-          strokeDasharray="5 5"
-          animate={{ rotate: -360 }}
-          transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-        />
-        {/* Elegant Central Shield representation of the challenge */}
-        <g transform="translate(200, 160)">
-          <rect x="0" y="0" width="100" height="100" rx="28" fill="#FFFFFF" stroke="var(--gloria-border)" strokeWidth="2" style={{ filter: "drop-shadow(0 12px 28px rgba(50,24,86,0.08))" }} />
-          <circle cx="50" cy="50" r="30" fill={iconBg} />
-          <path d="M42 50 l6 6 l12 -12" stroke={iconColor} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        </g>
-        
-        {/* Visual labels indicating administrative tension */}
-        <motion.g 
-          transform="translate(100, 110)"
-          animate={{ y: [0, -6, 0] }}
-          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-        >
-          <rect x="0" y="0" width="100" height="34" rx="8" fill="#fff" stroke="var(--gloria-border)" strokeWidth="1" />
-          <text x="50" y="21" fontSize="9" fontWeight="800" textAnchor="middle" fill="var(--gloria-dark-gray)">DESCENTRALIZADO</text>
-        </motion.g>
-
-        <motion.g 
-          transform="translate(300, 270)"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        >
-          <rect x="0" y="0" width="100" height="34" rx="8" fill="var(--gloria-dark-purple)" />
-          <text x="50" y="21" fontSize="9" fontWeight="800" textAnchor="middle" fill="#fff">DADOS ESPALHADOS</text>
-        </motion.g>
-      </svg>
-    );
   };
 
   return (
@@ -185,7 +112,7 @@ export const ProblemDetailSlide: React.FC<ProblemDetailSlideProps> = ({ slide })
           variants={elementVariants}
           className="visual-container-card"
         >
-          {renderIllustration()}
+          <ProblemVisual type={slide.visualType} />
         </motion.div>
       </div>
     </div>
