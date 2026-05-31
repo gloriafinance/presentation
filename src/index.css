@@ -353,16 +353,33 @@ p {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 36px;
+  grid-template-columns: 0.92fr 1.08fr; /* 48% / 52% */
+  gap: 24px;
   align-items: center;
   overflow: hidden;
+  position: relative;
+}
+
+.gloria-capa-bg-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse at 15% 30%, rgba(70,35,113,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 60%, rgba(54,217,0,0.03) 0%, transparent 50%);
 }
 
 .gloria-capa-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 10;
+  padding-left: 10px;
 }
 
 .gloria-kicker {
@@ -391,7 +408,7 @@ p {
 
 .gloria-capa-title {
   font-family: var(--font-title);
-  font-size: 57.2px;
+  font-size: 50px;
   font-weight: 900;
   color: var(--gloria-dark-purple);
   line-height: 1.05;
@@ -400,28 +417,28 @@ p {
 }
 
 .gloria-capa-subtitle {
-  font-size: 20.8px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--gloria-medium-gray);
   line-height: 1.45;
   margin-bottom: 20px;
-  max-width: 520px;
+  max-width: 460px;
 }
 
 .gloria-capa-statement {
-  padding: 16px 20px;
+  padding: 14px 18px;
   border-radius: 14px;
   border-left: 5px solid var(--gloria-green);
   background-color: rgba(250, 250, 252, 0.95);
-  margin-bottom: 24px;
-  max-width: 540px;
+  margin-bottom: 20px;
+  max-width: 460px;
   border-top: 1px solid rgba(226, 222, 232, 0.3);
   border-right: 1px solid rgba(226, 222, 232, 0.3);
   border-bottom: 1px solid rgba(226, 222, 232, 0.3);
 }
 
 .statement-text {
-  font-size: 16.2px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--gloria-dark-gray);
   line-height: 1.45;
@@ -437,7 +454,7 @@ p {
   border-radius: 99px;
   color: var(--gloria-white);
   background-color: var(--gloria-dark-purple);
-  font-size: 18.2px;
+  font-size: 17px;
   font-weight: 800;
   box-shadow: 0 8px 20px rgba(50, 24, 86, 0.15);
   cursor: pointer;
@@ -455,26 +472,92 @@ p {
   align-items: center;
   justify-content: center;
   height: 100%;
+  position: relative;
+  z-index: 10;
 }
 
-.visual-card {
+/* Pain board card — fills the right column */
+.capa-pain-board {
   width: 100%;
-  max-width: 370px;
-  border-radius: var(--radius-card);
+  height: 82%;
+  border-radius: 20px;
   border: 1px solid var(--gloria-border);
-  background: radial-gradient(circle at 10% 10%, #FFFFFF 0%, #FAF9FC 100%);
-  box-shadow: var(--shadow-node);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #FAFAFA;
+  box-shadow: 0 20px 50px rgba(70, 35, 113, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 
-.visual-svg {
+.capa-pain-board-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(70,35,113,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.capa-pain-svg {
   width: 100%;
-  height: auto;
-  max-height: 290px;
-  display: block;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* Labels floating on top of SVG elements */
+.pain-label {
+  position: absolute;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.pain-label-orange {
+  background: rgba(225, 112, 14, 0.12);
+  color: var(--gloria-orange);
+  border: 1px solid rgba(225, 112, 14, 0.2);
+}
+
+.pain-label-purple {
+  background: rgba(70, 35, 113, 0.08);
+  color: var(--gloria-purple);
+  border: 1px solid rgba(70, 35, 113, 0.12);
+}
+
+.pain-title-badge {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  background: var(--gloria-dark-purple);
+  color: #FFF;
+  padding: 7px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 20;
+}
+
+.pain-bottom-phrase {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  color: var(--gloria-dark-purple);
+  border: 1px solid var(--gloria-border);
+  padding: 10px 24px;
+  border-radius: 99px;
+  font-size: 14.5px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(50,24,86,0.08);
+  white-space: nowrap;
+  z-index: 20;
 }
 
 /* Slide 2 - O Ciclo / Mapa Mental Layout (Fully Complete and Safe) */
@@ -1319,6 +1402,389 @@ p {
     flex-direction: column;
     gap: 10px;
   }
+}
+
+/* ==========================================================================
+   Benefit Slides Layouts
+   ========================================================================== */
+
+/* Transition Slide (Slide 14) */
+.gloria-transicao-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.transicao-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gloria-white);
+  background-color: var(--gloria-green);
+  margin-bottom: 24px;
+}
+
+.transicao-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gloria-dark-purple);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.transicao-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gloria-medium-gray);
+  line-height: 1.5;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.transicao-visual-box {
+  width: 100%;
+  max-width: 900px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.transicao-impact {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gloria-purple);
+  background: rgba(70, 35, 113, 0.05);
+  padding: 12px 24px;
+  border-radius: 99px;
+  border: 1px solid rgba(70, 35, 113, 0.1);
+}
+
+/* Benefit Detail Layout */
+.gloria-benefit-layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.benefit-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gloria-green);
+  margin-bottom: 6px;
+}
+
+.benefit-title {
+  font-family: var(--font-title);
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--gloria-dark-purple);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.benefit-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gloria-dark-gray);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.benefit-bullets-block {
+  border-left: 3px solid var(--gloria-green);
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.benefit-bullet-row {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--gloria-dark-purple);
+  line-height: 1.3;
+}
+
+.benefit-impact-card {
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--gloria-soft-green);
+  border: 1px solid rgba(54, 217, 0, 0.2);
+}
+
+.benefit-impact-text {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gloria-dark-purple);
+}
+
+/* Solution Map Layout */
+.gloria-matriz-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 40px;
+}
+
+.matriz-header {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.matriz-title {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--gloria-dark-purple);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.matriz-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gloria-dark-gray);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.matriz-conversion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 30px;
+  flex: 1;
+  position: relative;
+  align-items: center;
+}
+
+.matriz-col-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.matriz-col-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.matriz-card {
+  background: var(--gloria-white);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+  height: 48px;
+}
+
+.dor-card {
+  color: var(--gloria-dark-gray);
+  border-left: 4px solid var(--gloria-orange);
+  border-top: 1px solid var(--gloria-border);
+  border-right: 1px solid var(--gloria-border);
+  border-bottom: 1px solid var(--gloria-border);
+}
+
+.dor-icon {
+  color: var(--gloria-orange);
+  flex-shrink: 0;
+}
+
+.res-card {
+  color: var(--gloria-dark-purple);
+  border-left: 4px solid var(--gloria-green);
+  border-top: 1px solid var(--gloria-border);
+  border-right: 1px solid var(--gloria-border);
+  border-bottom: 1px solid var(--gloria-border);
+}
+
+.res-icon {
+  color: var(--gloria-green);
+  flex-shrink: 0;
+}
+
+.dor-line {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  width: 30px;
+  height: 2px;
+  background-color: rgba(225, 112, 14, 0.3);
+  transform-origin: left;
+}
+
+.res-line {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  width: 30px;
+  height: 2px;
+  background-color: rgba(54, 217, 0, 0.3);
+  transform-origin: right;
+}
+
+.matriz-core {
+  background: var(--gloria-dark-purple);
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+  text-align: center;
+  color: var(--gloria-white);
+  box-shadow: 0 16px 40px rgba(70, 35, 113, 0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.core-logo {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.core-tagline {
+  font-size: 13.5px;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 24px;
+  max-width: 220px;
+  line-height: 1.3;
+}
+
+.core-chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.core-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.matriz-banner {
+  margin-top: auto;
+  margin-bottom: 20px;
+  background: var(--gloria-soft-green);
+  border: 1px solid rgba(54, 217, 0, 0.2);
+  color: var(--gloria-dark-purple);
+  padding: 12px 32px;
+  border-radius: 99px;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+  align-self: center;
+}
+
+/* Final Positioning Layout */
+.gloria-final-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.final-title {
+  font-size: 46px;
+  font-weight: 900;
+  color: var(--gloria-dark-purple);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+
+.final-desc {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--gloria-dark-gray);
+  line-height: 1.5;
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.final-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.final-benefit-item {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--gloria-border);
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--gloria-dark-purple);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.final-cta {
+  background-color: var(--gloria-green);
+  color: var(--gloria-white);
+  padding: 16px 32px;
+  border-radius: 99px;
+  font-size: 18px;
+  font-weight: 900;
+  box-shadow: 0 10px 25px rgba(54, 217, 0, 0.25);
 }
 
 /* ==========================================================================

@@ -6,13 +6,18 @@ import { SlideCapa } from "./components/SlideCapa";
 import { ProblemCycleMap } from "./components/ProblemCycleMap";
 import { ProblemDetailSlide } from "./components/ProblemDetailSlide";
 import { SlideConclusao } from "./components/SlideConclusao";
+import { SlideTransicaoSolucao } from "./components/SlideTransicaoSolucao";
+import { BenefitDetailSlide } from "./components/BenefitDetailSlide";
+import { SlideMapaSolucao } from "./components/SlideMapaSolucao";
+import { SlidePosicionamentoFinal } from "./components/SlidePosicionamentoFinal";
 import { problemSlides } from "./data/problemSlides";
+import { benefitSlides } from "./data/benefitSlides";
 
 export const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
-  const totalSlides = 13; // Slide 1 (Capa), Slide 2 (Mapa), Slides 3-12 (Dores), Slide 13 (Conclusão)
+  const totalSlides = 17; // 1(Capa) + 1(Mapa) + 10(Dores) + 1(Conclusão) + 1(Transição) + 1(Benefício Modelo) + 1(Mapa Solução) + 1(Posicionamento)
 
   // Navigation handlers
   const handleNext = () => {
@@ -91,27 +96,27 @@ export const App: React.FC = () => {
 
   // Render proper slide content based on current index
   const renderSlideContent = () => {
-    if (currentSlide === 0) {
-      return <SlideCapa onStart={() => handleSelectNode(1)} />;
+    if (currentSlide === 0) return <SlideCapa onStart={() => handleSelectNode(1)} />;
+    if (currentSlide === 1) return <ProblemCycleMap onSelectNode={handleSelectNode} activeNodeId={undefined} />;
+    
+    // Problem Detail Slides (indices 2 through 11)
+    if (currentSlide >= 2 && currentSlide <= 11) {
+      const slideDataIndex = currentSlide - 2;
+      return <ProblemDetailSlide slide={problemSlides[slideDataIndex]} />;
     }
-    if (currentSlide === 1) {
-      return (
-        <ProblemCycleMap
-          onSelectNode={handleSelectNode}
-          activeNodeId={undefined}
-        />
-      );
+    
+    if (currentSlide === 12) return <SlideConclusao />;
+    
+    // New Benefit Phase
+    if (currentSlide === 13) return <SlideTransicaoSolucao />;
+    
+    // Benefit Detail Slides (index 14 - currently only 1 model slide)
+    if (currentSlide === 14) {
+      return <BenefitDetailSlide slide={benefitSlides[0]} />;
     }
-    if (currentSlide === 12) {
-      return <SlideConclusao />;
-    }
-
-    // Detail slides correspond to index 2 through 11
-    const slideDataIndex = currentSlide - 2;
-    const currentSlideData = problemSlides[slideDataIndex];
-    if (currentSlideData) {
-      return <ProblemDetailSlide slide={currentSlideData} />;
-    }
+    
+    if (currentSlide === 15) return <SlideMapaSolucao />;
+    if (currentSlide === 16) return <SlidePosicionamentoFinal />;
 
     return null;
   };

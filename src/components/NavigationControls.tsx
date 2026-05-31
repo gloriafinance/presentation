@@ -38,7 +38,16 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
 
         <div className="nav-progress-block">
           <div className="progress-labels">
-            <span>{currentSlide === 0 ? "Apresentação" : currentSlide === 1 ? "O Ciclo" : "Análise da Dor"}</span>
+            <span>
+              {currentSlide === 0 ? "Apresentação" : 
+               currentSlide === 1 ? "O Ciclo" : 
+               currentSlide <= 11 ? "Análise da Dor" : 
+               currentSlide === 12 ? "Diagnóstico" :
+               currentSlide === 13 ? "A Solução" :
+               currentSlide === 14 ? "Benefícios" :
+               currentSlide === 15 ? "Matriz de Solução" :
+               "Conclusão Final"}
+            </span>
             <span>{Math.round(progressPercent)}%</span>
           </div>
           <div className="progress-track">
