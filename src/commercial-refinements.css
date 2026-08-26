@@ -1,0 +1,63 @@
+/* Refinements for commercial presentation readability. */
+
+/* Slide 3 — features: use a 2x2 matrix instead of four compressed columns. */
+.commercial-features-slide .commercial-feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.commercial-features-slide .commercial-feature-card {
+  min-height: 132px;
+  padding: 16px 18px;
+}
+
+.commercial-features-slide .commercial-feature-head {
+  gap: 12px;
+}
+
+.commercial-features-slide .commercial-feature-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.commercial-features-slide .commercial-feature-card h3 {
+  font-size: 16px;
+}
+
+.commercial-features-slide .commercial-feature-card small {
+  margin-top: 2px;
+  font-size: 9.5px;
+}
+
+.commercial-features-slide .commercial-feature-card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 16px;
+  row-gap: 8px;
+  margin-top: 13px;
+}
+
+.commercial-features-slide .commercial-feature-card li {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.commercial-features-slide .commercial-more-features {
+  margin-top: 13px;
+}
+
+.commercial-features-slide .commercial-more-features span {
+  padding: 7px 11px;
+  font-size: 9.5px;
+}
+
+@media (max-width: 1024px), (max-height: 700px) {
+  .commercial-features-slide .commercial-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-features-slide .commercial-feature-card ul {
+    grid-template-columns: 1fr;
+  }
+}
