@@ -1,144 +1,115 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandHeader } from "./components/BrandHeader";
 import { NavigationControls } from "./components/NavigationControls";
-import { SlideCapa } from "./components/SlideCapa";
-import { ProblemCycleMap } from "./components/ProblemCycleMap";
-import { ProblemDetailSlide } from "./components/ProblemDetailSlide";
-import { SlideConclusao } from "./components/SlideConclusao";
-import { SlideTransicaoSolucao } from "./components/SlideTransicaoSolucao";
-import { BenefitDetailSlide } from "./components/BenefitDetailSlide";
-import { SlideMapaSolucao } from "./components/SlideMapaSolucao";
-import { SlidePosicionamentoFinal } from "./components/SlidePosicionamentoFinal";
-import { problemSlides } from "./data/problemSlides";
-import { benefitSlides } from "./data/benefitSlides";
+import {
+  CommercialClosing,
+  CommercialCover,
+  CommercialFeatures,
+  CommercialFlow,
+  CommercialMember,
+  CommercialOutcomes,
+  CommercialProblem,
+} from "./components/CommercialSlides";
+import "./commercial.css";
+
+const TOTAL_SLIDES = 7;
 
 export const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
-  const totalSlides = 17; // 1(Capa) + 1(Mapa) + 10(Dores) + 1(Conclusão) + 1(Transição) + 1(Benefício Modelo) + 1(Mapa Solução) + 1(Posicionamento)
-
-  // Navigation handlers
-  const handleNext = () => {
-    if (currentSlide < totalSlides - 1) {
-      setDirection("forward");
-      setCurrentSlide((prev) => prev + 1);
-    }
+  const goToSlide = (slide: number) => {
+    if (slide < 0 || slide >= TOTAL_SLIDES || slide === currentSlide) return;
+    setDirection(slide > currentSlide ? "forward" : "backward");
+    setCurrentSlide(slide);
   };
 
-  const handlePrev = () => {
-    if (currentSlide > 0) {
-      setDirection("backward");
-      setCurrentSlide((prev) => prev - 1);
-    }
-  };
+  const handleNext = () => goToSlide(currentSlide + 1);
+  const handlePrev = () => goToSlide(currentSlide - 1);
+  const handleGoHome = () => goToSlide(0);
 
-  const handleGoToMap = () => {
-    if (currentSlide !== 1) {
-      setDirection(currentSlide > 1 ? "backward" : "forward");
-      setCurrentSlide(1);
-    }
-  };
-
-  const handleSelectNode = (slideIndex: number) => {
-    setDirection("forward");
-    setCurrentSlide(slideIndex);
-  };
-
-  // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === "Space") {
-        e.preventDefault();
-        handleNext();
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        handlePrev();
-      } else if (e.key === "Escape") {
-        handleGoToMap();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight" || event.key === " ") {
+        event.preventDefault();
+        if (currentSlide < TOTAL_SLIDES - 1) {
+          setDirection("forward");
+          setCurrentSlide((slide) => slide + 1);
+        }
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        if (currentSlide > 0) {
+          setDirection("backward");
+          setCurrentSlide((slide) => slide - 1);
+        }
+      } else if (event.key === "Escape" && currentSlide !== 0) {
+        setDirection("backward");
+        setCurrentSlide(0);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentSlide]);
 
-  // Framer Motion spring variants
+  const renderSlideContent = () => {
+    switch (currentSlide) {
+      case 0:
+        return <CommercialCover onStart={() => goToSlide(1)} />;
+      case 1:
+        return <CommercialProblem />;
+      case 2:
+        return <CommercialFeatures />;
+      case 3:
+        return <CommercialFlow />;
+      case 4:
+        return <CommercialMember />;
+      case 5:
+        return <CommercialOutcomes />;
+      case 6:
+        return <CommercialClosing />;
+      default:
+        return null;
+    }
+  };
+
   const slideVariants = {
-    enter: (dir: "forward" | "backward") => ({
-      x: dir === "forward" ? 200 : -200,
+    enter: (slideDirection: "forward" | "backward") => ({
+      x: slideDirection === "forward" ? 140 : -140,
       opacity: 0,
-      scale: 0.98,
+      scale: 0.985,
     }),
     center: {
       x: 0,
       opacity: 1,
       scale: 1,
       transition: {
-        x: { type: "spring" as const, stiffness: 220, damping: 24 },
-        opacity: { duration: 0.22 },
-        scale: { duration: 0.22 },
+        x: { type: "spring" as const, stiffness: 230, damping: 26 },
+        opacity: { duration: 0.2 },
+        scale: { duration: 0.2 },
       },
     },
-    exit: (dir: "forward" | "backward") => ({
-      x: dir === "forward" ? -200 : 200,
+    exit: (slideDirection: "forward" | "backward") => ({
+      x: slideDirection === "forward" ? -140 : 140,
       opacity: 0,
-      scale: 0.98,
-      transition: {
-        x: { type: "spring" as const, stiffness: 220, damping: 24 },
-        opacity: { duration: 0.18 },
-      },
+      scale: 0.985,
+      transition: { duration: 0.17 },
     }),
-  };
-
-  // Render proper slide content based on current index
-  const renderSlideContent = () => {
-    if (currentSlide === 0) return <SlideCapa onStart={() => handleSelectNode(1)} />;
-    if (currentSlide === 1) return <ProblemCycleMap onSelectNode={handleSelectNode} activeNodeId={undefined} />;
-    
-    // Problem Detail Slides (indices 2 through 11)
-    if (currentSlide >= 2 && currentSlide <= 11) {
-      const slideDataIndex = currentSlide - 2;
-      return <ProblemDetailSlide slide={problemSlides[slideDataIndex]} />;
-    }
-    
-    if (currentSlide === 12) return <SlideConclusao />;
-    
-    // New Benefit Phase
-    if (currentSlide === 13) return <SlideTransicaoSolucao />;
-    
-    // Benefit Detail Slides (index 14 - currently only 1 model slide)
-    if (currentSlide === 14) {
-      return <BenefitDetailSlide slide={benefitSlides[0]} />;
-    }
-    
-    if (currentSlide === 15) return <SlideMapaSolucao />;
-    if (currentSlide === 16) return <SlidePosicionamentoFinal />;
-
-    return null;
   };
 
   return (
     <div className="presentation-viewport">
       <div className="presentation-container">
-        
-        {/* Brand visual top line */}
         <div className="brand-bar" />
 
-        {/* Global Branding Header */}
         <BrandHeader
           currentSlide={currentSlide}
-          totalSlides={totalSlides}
-          onGoToMap={handleGoToMap}
+          totalSlides={TOTAL_SLIDES}
+          onGoHome={handleGoHome}
         />
 
-        {/* Main Content Area with directional Slide transition */}
         <main className="gloria-main-content">
-          
-          {/* DESKTOP ANIMATED TRANSITION VIEW */}
           <div className="hidden lg:block w-full h-full">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
@@ -155,21 +126,17 @@ export const App: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* MOBILE STATIC ADAPTIVE VIEW (Vertical Cards) */}
           <div className="lg:hidden gloria-slide-wrapper">
             {renderSlideContent()}
           </div>
-
         </main>
 
-        {/* Bottom Navigation Controls */}
         <NavigationControls
           currentSlide={currentSlide}
-          totalSlides={totalSlides}
+          totalSlides={TOTAL_SLIDES}
           onPrev={handlePrev}
           onNext={handleNext}
         />
-
       </div>
     </div>
   );
