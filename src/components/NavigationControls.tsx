@@ -8,6 +8,16 @@ interface NavigationControlsProps {
   onNext: () => void;
 }
 
+const slideLabels = [
+  "Glória Finance",
+  "O desafio",
+  "A plataforma",
+  "Operação conectada",
+  "Experiência do membro",
+  "Resultados",
+  "Demonstração",
+];
+
 export const NavigationControls: React.FC<NavigationControlsProps> = ({
   currentSlide,
   totalSlides,
@@ -20,41 +30,25 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
 
   return (
     <div className="gloria-nav-bar">
-      {/* Left side brand indicator */}
-      <div className="nav-brand-text">
-        Glória Finance &middot; Diagnóstico de Gestão
-      </div>
+      <div className="nav-brand-text">Glória Finance &middot; Gestão para igrejas</div>
 
-      {/* Center navigation controls */}
       <div className="nav-controls-group">
         <button
           onClick={onPrev}
           disabled={isFirst}
           className={`nav-arrow-btn ${isFirst ? "disabled" : ""}`}
-          title="Slide Anterior (Seta Esquerda)"
+          title="Slide anterior"
         >
           <ArrowLeft size={14} />
         </button>
 
         <div className="nav-progress-block">
           <div className="progress-labels">
-            <span>
-              {currentSlide === 0 ? "Apresentação" : 
-               currentSlide === 1 ? "O Ciclo" : 
-               currentSlide <= 11 ? "Análise da Dor" : 
-               currentSlide === 12 ? "Diagnóstico" :
-               currentSlide === 13 ? "A Solução" :
-               currentSlide === 14 ? "Benefícios" :
-               currentSlide === 15 ? "Matriz de Solução" :
-               "Conclusão Final"}
-            </span>
+            <span>{slideLabels[currentSlide] ?? "Apresentação"}</span>
             <span>{Math.round(progressPercent)}%</span>
           </div>
           <div className="progress-track">
-            <div 
-              className="progress-fill"
-              style={{ width: `${progressPercent}%` }}
-            />
+            <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
           </div>
         </div>
 
@@ -62,13 +56,12 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
           onClick={onNext}
           disabled={isLast}
           className={`nav-arrow-btn ${isLast ? "disabled" : ""}`}
-          title="Próximo Slide (Seta Direita)"
+          title="Próximo slide"
         >
           <ArrowRight size={14} />
         </button>
       </div>
 
-      {/* Right side slide indicator */}
       <div className="nav-slide-indicator">
         Pág. {String(currentSlide + 1).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
       </div>
