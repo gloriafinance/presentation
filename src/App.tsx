@@ -12,6 +12,7 @@ import {
   CommercialProblem,
 } from "./components/CommercialSlides";
 import "./commercial.css";
+import "./commercial-refinements.css";
 
 const TOTAL_SLIDES = 7;
 
