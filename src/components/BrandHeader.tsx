@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Maximize, Minimize, Map } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Home, Maximize, Minimize } from "lucide-react";
 
 interface BrandHeaderProps {
   currentSlide: number;
   totalSlides: number;
-  onGoToMap: () => void;
+  onGoHome: () => void;
 }
 
 export const BrandHeader: React.FC<BrandHeaderProps> = ({
   currentSlide,
   totalSlides,
-  onGoToMap,
+  onGoHome,
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -18,57 +18,50 @@ export const BrandHeader: React.FC<BrandHeaderProps> = ({
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
+
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-    };
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error("Erro ao ativar tela cheia:", err);
+      document.documentElement.requestFullscreen().catch((error) => {
+        console.error("Erro ao ativar tela cheia:", error);
       });
-    } else {
-      document.exitFullscreen();
+      return;
     }
+
+    document.exitFullscreen();
   };
 
   return (
     <header className="gloria-header">
       <div className="header-branding">
-        <img 
-          src="/logoHorizontal.png" 
-          alt="Glória Finance Logo" 
+        <img
+          src="/logoHorizontal.png"
+          alt="Glória Finance"
           className="header-logo"
-          onClick={() => { if(currentSlide !== 0) onGoToMap(); }}
+          onClick={() => currentSlide !== 0 && onGoHome()}
         />
-        {currentSlide > 1 && (
-          <div className="header-tag">
-            Diagnóstico
-          </div>
-        )}
+        {currentSlide > 0 && <div className="header-tag">Apresentação comercial</div>}
       </div>
 
       <div className="header-actions">
-        {/* "Voltar ao Ciclo" Shortcut */}
-        {currentSlide > 1 && (
-          <button onClick={onGoToMap} className="btn-back-to-map">
-            <Map size={14} />
-            <span>Voltar ao Ciclo</span>
+        {currentSlide > 0 && (
+          <button onClick={onGoHome} className="btn-back-to-map">
+            <Home size={14} />
+            <span>Início</span>
           </button>
         )}
 
-        {/* Fullscreen Button */}
         <button
           onClick={toggleFullscreen}
           className="btn-fullscreen"
-          title={isFullscreen ? "Sair da Tela Cheia" : "Tela Cheia"}
+          title={isFullscreen ? "Sair da tela cheia" : "Tela cheia"}
         >
           {isFullscreen ? <Minimize size={15} /> : <Maximize size={15} />}
         </button>
 
-        {/* Slide Counter */}
         <div className="slide-counter">
           Slide {currentSlide + 1} / {totalSlides}
         </div>
