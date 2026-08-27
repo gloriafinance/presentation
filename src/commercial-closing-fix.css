@@ -1,0 +1,55 @@
+/* Final slide contrast fixes. Keep this file loaded after commercial-refinements.css. */
+.commercial-closing-card {
+  color: #ffffff;
+}
+
+.commercial-closing-logo {
+  color: #ffffff;
+}
+
+.commercial-closing-logo strong {
+  color: #ffffff;
+}
+
+.commercial-closing-card .commercial-section-kicker.light {
+  color: #9cff6a;
+}
+
+.commercial-closing-card h2 {
+  color: #ffffff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
+}
+
+.commercial-closing-card h2 span {
+  color: #a8ff72;
+}
+
+.commercial-closing-card > p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.commercial-closing-button {
+  color: #24103d;
+  background: #46e000;
+  box-shadow: 0 14px 34px rgba(70, 224, 0, 0.24);
+}
+
+.commercial-closing-button:hover {
+  background: #58ef12;
+}
+
+.commercial-closing-trust {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.commercial-closing-trust span {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.commercial-closing-trust svg {
+  color: #a8ff72;
+}
+
+.commercial-closing-url {
+  color: rgba(255, 255, 255, 0.58);
+}
