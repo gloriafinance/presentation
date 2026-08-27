@@ -14,6 +14,7 @@ import {
 import "./commercial.css";
 import "./commercial-refinements.css";
 import "./commercial-closing-fix.css";
+import "./commercial-responsive.css";
 
 const TOTAL_SLIDES = 7;
 
@@ -112,7 +113,7 @@ export const App: React.FC = () => {
         />
 
         <main className="gloria-main-content">
-          <div className="hidden lg:block w-full h-full">
+          <div className="presentation-desktop-view">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentSlide}
@@ -128,7 +129,7 @@ export const App: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <div className="lg:hidden gloria-slide-wrapper">
+          <div className="presentation-mobile-view gloria-slide-wrapper">
             {renderSlideContent()}
           </div>
         </main>
