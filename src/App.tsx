@@ -15,12 +15,14 @@ import "./commercial.css";
 import "./commercial-refinements.css";
 import "./commercial-closing-fix.css";
 import "./commercial-responsive.css";
+import "./commercial-print.css";
 
 const TOTAL_SLIDES = 7;
 
 export const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
+  const isPrintMode = new URLSearchParams(window.location.search).get("print") === "1";
 
   const goToSlide = (slide: number) => {
     if (slide < 0 || slide >= TOTAL_SLIDES || slide === currentSlide) return;
@@ -33,6 +35,8 @@ export const App: React.FC = () => {
   const handleGoHome = () => goToSlide(0);
 
   useEffect(() => {
+    if (isPrintMode) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight" || event.key === " ") {
         event.preventDefault();
@@ -54,10 +58,10 @@ export const App: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlide]);
+  }, [currentSlide, isPrintMode]);
 
-  const renderSlideContent = () => {
-    switch (currentSlide) {
+  const renderSlideContent = (slide: number) => {
+    switch (slide) {
       case 0:
         return <CommercialCover onStart={() => goToSlide(1)} />;
       case 1:
@@ -76,6 +80,39 @@ export const App: React.FC = () => {
         return null;
     }
   };
+
+  if (isPrintMode) {
+    return (
+      <div className="pdf-deck">
+        {Array.from({ length: TOTAL_SLIDES }, (_, slide) => (
+          <section className="pdf-page" key={slide}>
+            <div className="presentation-container pdf-presentation-container">
+              <div className="brand-bar" />
+
+              <BrandHeader
+                currentSlide={slide}
+                totalSlides={TOTAL_SLIDES}
+                onGoHome={() => undefined}
+              />
+
+              <main className="gloria-main-content">
+                <div className="gloria-slide-wrapper pdf-slide-wrapper">
+                  {renderSlideContent(slide)}
+                </div>
+              </main>
+
+              <NavigationControls
+                currentSlide={slide}
+                totalSlides={TOTAL_SLIDES}
+                onPrev={() => undefined}
+                onNext={() => undefined}
+              />
+            </div>
+          </section>
+        ))}
+      </div>
+    );
+  }
 
   const slideVariants = {
     enter: (slideDirection: "forward" | "backward") => ({
@@ -124,13 +161,13 @@ export const App: React.FC = () => {
                 exit="exit"
                 className="gloria-slide-wrapper"
               >
-                {renderSlideContent()}
+                {renderSlideContent(currentSlide)}
               </motion.div>
             </AnimatePresence>
           </div>
 
           <div className="presentation-mobile-view gloria-slide-wrapper">
-            {renderSlideContent()}
+            {renderSlideContent(currentSlide)}
           </div>
         </main>
 
