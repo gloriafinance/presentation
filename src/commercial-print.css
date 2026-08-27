@@ -1,0 +1,124 @@
+@page {
+  size: 13.333in 7.5in;
+  margin: 0;
+}
+
+html:has(.pdf-deck),
+body:has(.pdf-deck),
+#root:has(.pdf-deck) {
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  display: block !important;
+  background: #ffffff !important;
+}
+
+body:has(.pdf-deck)::before {
+  display: none !important;
+}
+
+.pdf-deck {
+  width: 13.333in;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
+
+.pdf-page {
+  width: 13.333in;
+  height: 7.5in;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  break-after: page;
+  page-break-after: always;
+  background: #ffffff;
+}
+
+.pdf-page:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+.pdf-presentation-container {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+  display: flex !important;
+  overflow: hidden !important;
+}
+
+.pdf-deck .brand-bar {
+  position: absolute !important;
+}
+
+.pdf-deck .gloria-header {
+  position: relative !important;
+  top: auto !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  padding: 0 32px !important;
+  border-radius: 0 !important;
+}
+
+.pdf-deck .btn-back-to-map,
+.pdf-deck .btn-fullscreen {
+  display: none !important;
+}
+
+.pdf-deck .gloria-main-content {
+  position: relative !important;
+  flex: 1 1 auto !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+
+.pdf-deck .pdf-slide-wrapper {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 20px 40px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.pdf-deck .gloria-nav-bar {
+  position: relative !important;
+  width: 100% !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  padding: 0 40px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.pdf-deck .nav-controls-group {
+  display: none !important;
+}
+
+.pdf-deck .nav-brand-text,
+.pdf-deck .nav-slide-indicator {
+  display: block !important;
+}
+
+.pdf-deck .commercial-closing-card {
+  height: 100% !important;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
