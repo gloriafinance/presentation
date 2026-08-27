@@ -13,6 +13,7 @@ import {
 } from "./components/CommercialSlides";
 import "./commercial.css";
 import "./commercial-refinements.css";
+import "./commercial-closing-fix.css";
 
 const TOTAL_SLIDES = 7;
 
