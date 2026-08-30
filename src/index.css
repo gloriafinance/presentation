@@ -1116,7 +1116,7 @@ p {
 }
 
 /* Responsividade Adaptativa (Mobile / Tablet) */
-@media (max-width: 1024px), (max-height: 700px) {
+@media screen and (max-width: 1024px) {
   html, body {
     overflow-y: auto;
     height: auto;
@@ -1805,7 +1805,7 @@ p {
   display: none !important;
 }
 
-@media (min-width: 1025px) and (min-height: 701px) {
+@media screen and (min-width: 1025px) {
   .lg\:block {
     display: block !important;
   }
@@ -1814,7 +1814,7 @@ p {
   }
 }
 
-@media (max-width: 1024px), (max-height: 700px) {
+@media screen and (max-width: 1024px) {
   .lg\:block {
     display: none !important;
   }

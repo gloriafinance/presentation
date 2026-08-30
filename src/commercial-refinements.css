@@ -1,0 +1,630 @@
+/*
+ * Commercial deck refinements
+ *
+ * Presentation-first sizing: this deck is projected in 16:9, so body copy must
+ * remain readable at a distance. These rules intentionally override the more
+ * compact dashboard-like sizing from commercial.css.
+ */
+
+/* --------------------------------------------------------------------------
+   Global commercial typography and density
+   -------------------------------------------------------------------------- */
+
+.commercial-kicker,
+.commercial-section-kicker {
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 0.11em;
+}
+
+.commercial-kicker-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.commercial-section-heading {
+  max-width: 1080px;
+}
+
+.commercial-section-heading h2,
+.commercial-member-copy h2 {
+  margin-top: 10px;
+  font-size: clamp(42px, 3vw, 54px);
+  line-height: 1.04;
+}
+
+.commercial-section-heading.compact h2 {
+  margin-top: 8px;
+  font-size: clamp(40px, 2.8vw, 50px);
+}
+
+.commercial-section-heading p,
+.commercial-member-copy > p {
+  margin-top: 13px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.commercial-standard-slide {
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 1 — cover
+   -------------------------------------------------------------------------- */
+
+.commercial-cover {
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 52px;
+}
+
+.commercial-cover-title {
+  margin-top: 18px;
+  font-size: clamp(48px, 3.7vw, 62px);
+  line-height: 1;
+}
+
+.commercial-cover-subtitle {
+  margin-top: 22px;
+  max-width: 690px;
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.commercial-cover-tags {
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.commercial-cover-tags span {
+  padding: 9px 13px;
+  font-size: 13px;
+}
+
+.commercial-primary-button {
+  margin-top: 28px;
+  padding: 15px 22px;
+  font-size: 15px;
+}
+
+.commercial-product-preview {
+  padding: 18px;
+}
+
+.commercial-preview-window {
+  height: 410px;
+}
+
+.commercial-preview-badge {
+  padding: 10px 14px;
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 2 — problem
+   -------------------------------------------------------------------------- */
+
+.commercial-problem-grid {
+  gap: 22px;
+  margin-top: 34px;
+}
+
+.commercial-problem-card {
+  min-height: 235px;
+  padding: 28px;
+  border-radius: 20px;
+}
+
+.commercial-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 15px;
+}
+
+.commercial-problem-card h3,
+.commercial-outcome-card h3 {
+  margin-top: 18px;
+  font-size: 22px;
+}
+
+.commercial-problem-card p,
+.commercial-outcome-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.commercial-statement,
+.commercial-positioning {
+  margin-top: 22px;
+  padding: 15px 20px;
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 3 — features: true 2x2 presentation matrix
+   -------------------------------------------------------------------------- */
+
+.commercial-features-slide .commercial-feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.commercial-features-slide .commercial-feature-card {
+  min-height: 186px;
+  padding: 22px 24px;
+  border-radius: 18px;
+}
+
+.commercial-features-slide .commercial-feature-head {
+  gap: 14px;
+}
+
+.commercial-features-slide .commercial-feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+}
+
+.commercial-features-slide .commercial-feature-card h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.commercial-features-slide .commercial-feature-card small {
+  margin-top: 4px;
+  font-size: 12.5px;
+}
+
+.commercial-features-slide .commercial-feature-card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 22px;
+  row-gap: 11px;
+  margin-top: 18px;
+}
+
+.commercial-features-slide .commercial-feature-card li {
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.commercial-features-slide .commercial-feature-card li svg {
+  width: 17px;
+  height: 17px;
+}
+
+.commercial-features-slide .commercial-more-features {
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.commercial-features-slide .commercial-more-features span {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 4 — connected operation
+   Six tiny horizontal cards were not presentation-readable. Use a 3x2 matrix.
+   -------------------------------------------------------------------------- */
+
+.commercial-flow-slide .commercial-flow-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.commercial-flow-slide .commercial-flow-arrow {
+  display: none;
+}
+
+.commercial-flow-slide .commercial-flow-step {
+  width: 100%;
+  min-height: 155px;
+  padding: 22px 20px;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 18px;
+}
+
+.commercial-flow-slide .commercial-flow-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+}
+
+.commercial-flow-slide .commercial-flow-step strong {
+  font-size: 17px;
+}
+
+.commercial-flow-slide .commercial-flow-step small {
+  margin-top: 7px;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.commercial-flow-slide .commercial-cross-layer {
+  gap: 9px;
+  margin-top: 20px;
+  padding: 13px;
+}
+
+.commercial-flow-slide .commercial-cross-layer span {
+  padding: 7px 11px;
+  font-size: 11.5px;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 5 — member experience
+   -------------------------------------------------------------------------- */
+
+.commercial-member-slide {
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 62px;
+}
+
+.commercial-phone {
+  width: 286px;
+  padding: 10px;
+  border-radius: 38px;
+}
+
+.commercial-phone-screen {
+  min-height: 455px;
+  padding: 30px 18px 18px;
+  border-radius: 29px;
+}
+
+.commercial-phone-notch {
+  top: 7px;
+  width: 88px;
+  height: 19px;
+}
+
+.commercial-phone-brand {
+  font-size: 13px;
+}
+
+.commercial-phone-greeting {
+  margin-top: 22px;
+}
+
+.commercial-phone-greeting small {
+  font-size: 10px;
+}
+
+.commercial-phone-greeting strong {
+  font-size: 17px;
+}
+
+.commercial-phone-card {
+  margin-top: 16px;
+  padding: 17px;
+  border-radius: 17px;
+}
+
+.commercial-phone-card small {
+  font-size: 9px;
+}
+
+.commercial-phone-card strong {
+  margin-top: 7px;
+  font-size: 22px;
+}
+
+.commercial-phone-card span {
+  margin-top: 12px;
+  font-size: 9px;
+}
+
+.commercial-phone-actions {
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.commercial-phone-actions div {
+  padding: 12px 5px;
+}
+
+.commercial-phone-actions span {
+  font-size: 9px;
+}
+
+.commercial-phone-devotional {
+  margin-top: 15px;
+  padding: 13px;
+}
+
+.commercial-phone-devotional small {
+  font-size: 9px;
+}
+
+.commercial-phone-devotional strong {
+  margin-top: 4px;
+  font-size: 10.5px;
+}
+
+.commercial-floating-pill {
+  bottom: -15px;
+  padding: 10px 15px;
+  font-size: 12px;
+}
+
+.commercial-member-copy {
+  max-width: 760px;
+}
+
+.commercial-member-list {
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.commercial-member-list > div {
+  min-height: 108px;
+  padding: 17px;
+  gap: 13px;
+  border-radius: 16px;
+}
+
+.commercial-member-list > div > svg {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 auto;
+}
+
+.commercial-member-list strong {
+  font-size: 15px;
+}
+
+.commercial-member-list small {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 6 — outcomes: 2x2 rather than four small tiles in a single row
+   -------------------------------------------------------------------------- */
+
+.commercial-outcome-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.commercial-outcome-card {
+  min-height: 155px;
+  padding: 23px 26px;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 18px;
+  text-align: left;
+  border-radius: 18px;
+}
+
+.commercial-outcome-card > div {
+  grid-row: 1 / span 2;
+  width: 54px;
+  height: 54px;
+  margin: 0;
+  border-radius: 15px;
+}
+
+.commercial-outcome-card h3 {
+  align-self: end;
+  margin-top: 0;
+}
+
+.commercial-outcome-card p {
+  align-self: start;
+}
+
+.commercial-positioning {
+  margin-top: 22px;
+  min-height: 54px;
+}
+
+/* --------------------------------------------------------------------------
+   Slide 7 — closing
+   Full visual statement instead of a small card floating in empty space.
+   -------------------------------------------------------------------------- */
+
+.commercial-closing-slide {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.commercial-closing-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 56px 68px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 88% 15%, rgba(54,217,0,.20), transparent 26%),
+    radial-gradient(circle at 12% 88%, rgba(118,75,162,.34), transparent 31%),
+    linear-gradient(135deg, #24103d 0%, #321856 54%, #462371 100%);
+  box-shadow: 0 28px 70px rgba(50,24,86,.22);
+}
+
+.commercial-closing-card::before,
+.commercial-closing-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.09);
+  pointer-events: none;
+}
+
+.commercial-closing-card::before {
+  width: 340px;
+  height: 340px;
+  right: -130px;
+  top: -150px;
+}
+
+.commercial-closing-card::after {
+  width: 260px;
+  height: 260px;
+  left: -110px;
+  bottom: -145px;
+}
+
+.commercial-closing-logo {
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.commercial-closing-card .commercial-section-kicker.light {
+  font-size: 13px;
+}
+
+.commercial-closing-card h2 {
+  max-width: 980px;
+  margin-top: 14px;
+  font-size: clamp(52px, 4vw, 68px);
+  line-height: 1;
+}
+
+.commercial-closing-card > p {
+  max-width: 780px;
+  margin-top: 20px;
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.commercial-closing-button {
+  margin-top: 30px;
+  padding: 16px 24px;
+  border-radius: 14px;
+  font-size: 16px;
+}
+
+.commercial-closing-trust {
+  width: min(900px, 100%);
+  margin-top: 34px;
+  padding-top: 22px;
+  gap: 30px;
+}
+
+.commercial-closing-trust span {
+  font-size: 12px;
+}
+
+.commercial-closing-url {
+  margin-top: 17px;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   Compact desktop / tablet safeguards
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1280px), (max-height: 820px) {
+  .commercial-section-heading h2,
+  .commercial-member-copy h2 {
+    font-size: 40px;
+  }
+
+  .commercial-section-heading.compact h2 {
+    font-size: 37px;
+  }
+
+  .commercial-section-heading p,
+  .commercial-member-copy > p {
+    font-size: 16px;
+  }
+
+  .commercial-problem-card {
+    min-height: 190px;
+    padding: 21px;
+  }
+
+  .commercial-features-slide .commercial-feature-card {
+    min-height: 155px;
+    padding: 18px 20px;
+  }
+
+  .commercial-flow-slide .commercial-flow-step {
+    min-height: 132px;
+    padding: 17px;
+  }
+
+  .commercial-phone {
+    width: 245px;
+  }
+
+  .commercial-phone-screen {
+    min-height: 390px;
+  }
+
+  .commercial-member-list > div {
+    min-height: 92px;
+  }
+
+  .commercial-outcome-card {
+    min-height: 135px;
+  }
+
+  .commercial-closing-card {
+    padding: 42px 52px 34px;
+  }
+
+  .commercial-closing-card h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .commercial-cover,
+  .commercial-member-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-features-slide .commercial-feature-grid,
+  .commercial-outcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-features-slide .commercial-feature-card ul {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-flow-slide .commercial-flow-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .commercial-closing-card {
+    min-height: 600px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .commercial-flow-slide .commercial-flow-row {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial-outcome-card {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .commercial-closing-card {
+    padding: 34px 24px;
+  }
+
+  .commercial-closing-card h2 {
+    font-size: 36px;
+  }
+}
