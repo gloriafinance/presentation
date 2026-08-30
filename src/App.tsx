@@ -22,7 +22,9 @@ const TOTAL_SLIDES = 7;
 export const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
-  const isPrintMode = new URLSearchParams(window.location.search).get("print") === "1";
+  const searchParams = new URLSearchParams(window.location.search);
+  const isPrintMode = searchParams.get("print") === "1";
+  const requestedPrintSlide = Number(searchParams.get("slide"));
 
   const goToSlide = (slide: number) => {
     if (slide < 0 || slide >= TOTAL_SLIDES || slide === currentSlide) return;
@@ -33,6 +35,12 @@ export const App: React.FC = () => {
   const handleNext = () => goToSlide(currentSlide + 1);
   const handlePrev = () => goToSlide(currentSlide - 1);
   const handleGoHome = () => goToSlide(0);
+
+  useEffect(() => {
+    if (isPrintMode) return;
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [currentSlide, isPrintMode]);
 
   useEffect(() => {
     if (isPrintMode) return;
@@ -82,9 +90,15 @@ export const App: React.FC = () => {
   };
 
   if (isPrintMode) {
+    const slidesToPrint = Number.isInteger(requestedPrintSlide)
+      && requestedPrintSlide >= 0
+      && requestedPrintSlide < TOTAL_SLIDES
+      ? [requestedPrintSlide]
+      : Array.from({ length: TOTAL_SLIDES }, (_, slide) => slide);
+
     return (
       <div className="pdf-deck">
-        {Array.from({ length: TOTAL_SLIDES }, (_, slide) => (
+        {slidesToPrint.map((slide) => (
           <section className="pdf-page" key={slide}>
             <div className="presentation-container pdf-presentation-container">
               <div className="brand-bar" />

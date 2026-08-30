@@ -921,7 +921,7 @@
   .commercial-outcome-card { min-height: 150px; }
 }
 
-@media (max-width: 1024px), (max-height: 700px) {
+@media screen and (max-width: 1024px) {
   .commercial-cover,
   .commercial-member-slide {
     grid-template-columns: 1fr;
@@ -988,7 +988,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
   .commercial-preview-window {
     grid-template-columns: 42px 1fr;
     height: 290px;

@@ -1,5 +1,5 @@
 @page {
-  size: 13.333in 7.5in;
+  size: 13.333333in 7.5in;
   margin: 0;
 }
 
@@ -19,14 +19,14 @@ body:has(.pdf-deck)::before {
 }
 
 .pdf-deck {
-  width: 13.333in;
+  width: 13.333333in;
   margin: 0;
   padding: 0;
   background: #ffffff;
 }
 
 .pdf-page {
-  width: 13.333in;
+  width: 13.333333in;
   height: 7.5in;
   margin: 0;
   padding: 0;
@@ -67,6 +67,9 @@ body:has(.pdf-deck)::before {
   min-height: 64px !important;
   padding: 0 32px !important;
   border-radius: 0 !important;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .pdf-deck .btn-back-to-map,
@@ -101,6 +104,18 @@ body:has(.pdf-deck)::before {
   padding: 0 40px !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.pdf-deck .header-branding,
+.pdf-deck .header-actions,
+.pdf-deck .nav-brand-text,
+.pdf-deck .nav-slide-indicator {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .pdf-deck .nav-controls-group {
@@ -116,9 +131,25 @@ body:has(.pdf-deck)::before {
   height: 100% !important;
 }
 
+.pdf-deck * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.pdf-deck [style] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
+
+  .pdf-page {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
 }

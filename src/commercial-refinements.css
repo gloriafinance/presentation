@@ -587,7 +587,7 @@
   }
 }
 
-@media (max-width: 1024px), (max-height: 700px) {
+@media screen and (max-width: 1024px) {
   .commercial-cover,
   .commercial-member-slide {
     grid-template-columns: 1fr;
@@ -611,7 +611,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
   .commercial-flow-slide .commercial-flow-row {
     grid-template-columns: 1fr;
   }
